@@ -1,7 +1,7 @@
 import time
 import telebot
 from config import bot_token
-from text import intro_text
+from text import intro_text, google_text
 import markups as mark
 
 bot = telebot.TeleBot(bot_token)
@@ -17,6 +17,7 @@ def send_welcome(message):
 @bot.message_handler(content_types=['text'])
 def send_client_message(message):
     if message.text == 'Нужен Гугл Парсер (GoogleParser)':
+        bot.send_message(message.chat.id, google_text)
         bot.send_video(message.chat.id,
                        "BAACAgIAAxkBAAEOKSlhh_6rVA3B033NN7NCqzrwDYuXUgAC3hUAAsDPQEiE_oVdkmB7iCIE",
                        reply_markup=mark.back_menu)
